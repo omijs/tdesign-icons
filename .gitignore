@@ -6,8 +6,7 @@ es/
 esm/
 cjs/
 lib/
-dist/icons
-dist/index.ts
+dist
 _site
 _static_site
 package

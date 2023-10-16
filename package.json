@@ -2,11 +2,11 @@
   "name": "tdesign-icons-omi",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "init": "git submodule init && git submodule update",
     "gen": "node ./scripts/generate-icons.js",
-    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix"
+    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix",
+    "build": "microbundle"
   },
   "files": [
     "dist",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/omijs/tdesign-icons.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/omijs/tdesign-icons/issues"
   },
@@ -30,6 +30,16 @@
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "microbundle": "^0.15.1",
     "prettier": "^3.0.3"
-  }
+  },
+  "type": "module",
+  "source": "src/index.ts",           
+  "exports": {
+    "require": "./dist/index.cjs",      
+    "default": "./dist/index.modern.js" 
+  },
+  "main": "./dist/index.cjs",          
+  "module": "./dist/index.module.js",   
+  "unpkg": "./dist/index.umd.js"
 }

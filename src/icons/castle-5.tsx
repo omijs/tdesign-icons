@@ -1,0 +1,44 @@
+import { h, tag, WeElement, OmiProps, classNames } from 'omi'
+import { IconProps } from '../type'
+import { prefix } from '../prefix'
+import css from '../icon.css'
+
+@tag('t-icon-castle-5')
+export class IconCastle5 extends WeElement<IconProps> {
+  static css = css
+
+  static defaultProps = {
+    size: '1em',
+    style: { fill: '#000' },
+  }
+
+  static propTypes = {
+    size: [String, Number],
+    onClick: Function,
+    style: Object,
+    class: String,
+  }
+
+  render(props: OmiProps<IconProps>) {
+    const iconClassName = classNames(prefix('icon'), props.class, {
+      [`${prefix('size-s')}`]: props.size === 'small',
+      [`${prefix('size-m')}`]: props.size === 'medium',
+      [`${prefix('size-l')}`]: props.size === 'large',
+    })
+    const flag = props.size === 'small' || props.size === 'medium' || props.size === 'large'
+    const iconStyle = {
+      ...props.style,
+      fontSize: props.size,
+    }
+    return ( 
+<svg 
+  class={iconClassName} 
+  width={flag ? '24' : props.size}
+  height={flag ? '24' : props.size}
+  style={iconStyle} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 2V3H16V2H14V9.13148L12 7.79815L10 9.13148V2H8V3H4V2H2V22H22V2H20ZM4 5H8V10H6V20H4V5ZM8 20V12H9.30278L12 10.2019L14.6972 12H16V20H13V15H11V20H8ZM18 20V10H16V5H20V20H18Z" fill="black"/>
+</svg>
+
+    )
+  }
+}

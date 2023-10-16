@@ -1,0 +1,30 @@
+.t-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+}
+
+.t-icon::before {
+  font-family: unset;
+}
+
+.t-icon-loading {
+  animation: t-spin 1s linear infinite;
+}
+
+.t-icon {
+  fill: currentcolor;
+
+  &.t-size-s {
+    font-size: 14px;
+  }
+
+  &.t-size-m {
+    font-size: 16px;
+  }
+
+  &.t-size-l {
+    font-size: 18px;
+  }
+}

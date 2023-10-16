@@ -1,9 +1,9 @@
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
 
-const svgDir = path.join(__dirname, '../src/_icons/svg')
-const iconDir = path.join(__dirname, '../dist/icons')
-const indexFile = path.join(__dirname, '../dist/index.ts')
+const svgDir = 'src/_icons/svg'
+const iconDir ='src/icons'
+const indexFile = 'src/index.ts'
 
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
@@ -60,7 +60,7 @@ fs.readdir(svgDir, (err, files) => {
       const iconComponent = `import { h, tag, WeElement, OmiProps, classNames } from 'omi'
 import { IconProps } from '../type'
 import { prefix } from '../prefix'
-import css from '../icon.less'
+import css from '../icon.css'
 
 @tag('t-icon-${iconName}')
 export class Icon${removeDashAndCapitalize(
