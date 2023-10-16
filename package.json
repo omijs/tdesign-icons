@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "git submodule init && git submodule update"
+    "init": "git submodule init && git submodule update",
+    "gen": "node ./scripts/generate-icons.js"
   },
+  "files": [
+    "dist",
+    "README.md"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/omijs/tdesign-icons.git"
@@ -15,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/omijs/tdesign-icons/issues"
   },
-  "homepage": "https://github.com/omijs/tdesign-icons#readme"
+  "homepage": "https://github.com/omijs/tdesign-icons#readme",
+  "dependencies": {
+    "omi": "^7.1.0"
+  }
 }
