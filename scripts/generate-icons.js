@@ -3,6 +3,37 @@ const path = require('path')
 
 const svgDir = path.join(__dirname, '../src/_icons/svg')
 const iconDir = path.join(__dirname, '../dist/icons')
+const indexFile = path.join(__dirname, '../dist/index.ts')
+
+// 读取 SVG 目录
+fs.readdir(svgDir, (err, files) => {
+  if (err) {
+    console.error('Error reading SVG directory:', err)
+    return
+  }
+
+  let exports = ''
+
+  // 遍历 SVG 文件
+  files.forEach((file) => {
+    if (path.extname(file) === '.svg') {
+      const iconName = path.basename(file, '.svg')
+
+      // 读取 SVG 文件内容
+      const svgContent = fs.readFileSync(path.join(svgDir, file), 'utf-8')
+
+      // 创建一个变量来保存 SVG 内容
+      const variableName = `${iconName}Svg`
+      exports += `export { Icon${removeDashAndCapitalize(
+        iconName
+      )} } from './icons/${iconName}'\n`
+    }
+  })
+
+  // 将所有 SVG 内容写入 index.ts 文件
+  fs.writeFileSync(indexFile, exports)
+  console.log('Generated index.ts')
+})
 
 // 确保 icons 目录存在
 if (!fs.existsSync(iconDir)) {
