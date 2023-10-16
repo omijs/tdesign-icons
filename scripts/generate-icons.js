@@ -1,29 +1,29 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const svgDir = path.join(__dirname, '../src/_icons/svg');
-const iconDir = path.join(__dirname, '../dist/icons');
+const svgDir = path.join(__dirname, '../src/_icons/svg')
+const iconDir = path.join(__dirname, '../dist/icons')
 
 // 确保 icons 目录存在
 if (!fs.existsSync(iconDir)) {
-  fs.mkdirSync(iconDir);
+  fs.mkdirSync(iconDir)
 }
 
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
   if (err) {
-    console.error('Error reading SVG directory:', err);
-    return;
+    console.error('Error reading SVG directory:', err)
+    return
   }
 
   // 遍历 SVG 文件
   files.forEach((file) => {
     if (path.extname(file) === '.svg') {
-      const iconName = path.basename(file, '.svg');
-      const iconPath = path.join(iconDir, `${iconName}.tsx`);
+      const iconName = path.basename(file, '.svg')
+      const iconPath = path.join(iconDir, `${iconName}.tsx`)
 
       // 读取 SVG 文件内容
-      const svgContent = fs.readFileSync(path.join(svgDir, file), 'utf-8');
+      const svgContent = fs.readFileSync(path.join(svgDir, file), 'utf-8')
 
       // 创建 Omi icon 元素
       const iconComponent = `import { h, tag, WeElement, OmiProps, classNames } from 'omi'
@@ -64,13 +64,10 @@ ${transformSvgContent(svgContent)}
   }
 }`
       // 将 Omi icon 元素写入文件
-      fs.writeFileSync(iconPath, iconComponent);
-
+      fs.writeFileSync(iconPath, iconComponent)
     }
-  });
-});
-
-
+  })
+})
 
 function transformSvgContent(svgContent) {
   return svgContent.replace(/<svg width="\d{2}" height="\d{2}"/, `<svg 
@@ -79,12 +76,13 @@ function transformSvgContent(svgContent) {
   height={flag ? '24' : props.size}
   style={iconStyle}`)
 }
+
 function removeDashAndCapitalize(str) {
-  const words = str.split("-");
+  const words = str.split('-')
   const capitalizedWords = words.map(word => {
-    const firstLetter = word.charAt(0).toUpperCase();
-    const restOfWord = word.slice(1);
-    return firstLetter + restOfWord;
-  });
-  return capitalizedWords.join("");
+    const firstLetter = word.charAt(0).toUpperCase()
+    const restOfWord = word.slice(1)
+    return firstLetter + restOfWord
+  })
+  return capitalizedWords.join('')
 }
