@@ -1,6 +1,6 @@
 [submodule "src/_common"]
 	path = src/_common
 	url = https://github.com/Tencent/tdesign-common.git
-[submodule "src/_tdesign-common"]
-	path = src/_tdesign-common
-	url = https://github.com/Tencent/tdesign-icons
+[submodule "src/_icons"]
+	path = src/_icons
+	url = https://github.com/Tencent/tdesign-icons.git
