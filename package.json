@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "init": "git submodule init && git submodule update",
-    "gen": "node ./scripts/generate-icons.js"
+    "gen": "node ./scripts/generate-icons.js",
+    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix"
   },
   "files": [
     "dist",
-    "README.md"],
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/omijs/tdesign-icons.git"
@@ -22,5 +24,12 @@
   "homepage": "https://github.com/omijs/tdesign-icons#readme",
   "dependencies": {
     "omi": "^7.1.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3"
   }
 }

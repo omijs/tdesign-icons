@@ -32,7 +32,9 @@ import { prefix } from '../prefix'
 import css from '../icon.less'
 
 @tag('t-icon-${iconName}')
-export class Icon${removeDashAndCapitalize(iconName)} extends WeElement<IconProps> {
+export class Icon${removeDashAndCapitalize(
+        iconName
+      )} extends WeElement<IconProps> {
   static css = css
 
   static defaultProps = {
@@ -70,16 +72,19 @@ ${transformSvgContent(svgContent)}
 })
 
 function transformSvgContent(svgContent) {
-  return svgContent.replace(/<svg width="\d{2}" height="\d{2}"/, `<svg 
+  return svgContent.replace(
+    /<svg width="\d{2}" height="\d{2}"/,
+    `<svg 
   class={iconClassName} 
   width={flag ? '24' : props.size}
   height={flag ? '24' : props.size}
-  style={iconStyle}`)
+  style={iconStyle}`
+  )
 }
 
 function removeDashAndCapitalize(str) {
   const words = str.split('-')
-  const capitalizedWords = words.map(word => {
+  const capitalizedWords = words.map((word) => {
     const firstLetter = word.charAt(0).toUpperCase()
     const restOfWord = word.slice(1)
     return firstLetter + restOfWord
