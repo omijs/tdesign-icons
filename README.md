@@ -1,1 +1,1 @@
-# tdesign-icons
+# tdesign-icons-omi
