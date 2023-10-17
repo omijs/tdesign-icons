@@ -14,7 +14,6 @@ export class IconHd extends WeElement<IconProps> {
 
   static propTypes = {
     size: [String, Number],
-    onClick: Function,
     style: Object,
     class: String,
   }

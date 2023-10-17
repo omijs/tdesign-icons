@@ -12,6 +12,8 @@ tdesign-icons-omi is a collection of icons specifically designed for the Omi fra
 npm install tdesign-icons-omi
 ```
 
+## Usage 
+
 ```tsx
 import { render, signal, tag, Component, h } from 'omi'
 import { IconName } from 'tdesign-icons-omi';
@@ -22,6 +24,7 @@ class IconDemo extends Component {
   render() {
     return (
       <>
+        <div>Hello TICon</div>
         <t-icon-icon-name />
       </>
     )
