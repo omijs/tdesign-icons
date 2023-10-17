@@ -18,6 +18,9 @@ fs.writeFileSync('dist/icon.css', data, 'utf8')
 const jsonData = fs.readFileSync('package.json', 'utf8')
 fs.writeFileSync('dist/package.json', jsonData, 'utf8')
 
+const readmeData = fs.readFileSync('README.md', 'utf8')
+fs.writeFileSync('dist/README.md', readmeData, 'utf8')
+
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
   if (err) {

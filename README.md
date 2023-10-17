@@ -15,22 +15,37 @@ npm install tdesign-icons-omi
 ## Usage 
 
 ```tsx
-import { render, tag, Component, h } from 'omi'
-import from 'tdesign-icons-omi/xx-xx';
+import { render, signal, tag, Component, h } from 'omi'
 
-@tag('icon-demo')
-class IconDemo extends Component {
+import 'tdesign-icons-omi/add-rectangle'
+import 'tdesign-icons-omi/minus-rectangle'
+
+const count = signal(0)
+
+function add() {
+  count.value++
+}
+
+function sub() {
+  count.value--
+}
+
+@tag('counter-demo')
+class CounterDemo extends Component {
+  static css = 'span { color: red; }'
+
   render() {
     return (
       <>
-        <div>Hello TICon</div>
-        <t-icon-xx-xx />
+        <t-icon-minus-rectangle onClick={sub} />
+        <span>{count.value}</span>
+        <t-icon-add-rectangle onClick={add} />
       </>
     )
   }
 }
 
-render(<icon-demo />, document.body)
+render(<counter-demo />, document.body)
 ```
 
 ## Contributing
