@@ -1,12 +1,11 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TDesign icons for Omi framework",
   "scripts": {
     "init": "git submodule init && git submodule update",
     "gen": "node ./scripts/generate-icons.js",
-    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix",
-    "build": "microbundle"
+    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix"
   },
   "files": [
     "dist",
@@ -30,16 +29,13 @@
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "microbundle": "^0.15.1",
     "prettier": "^3.0.3"
   },
-  "type": "module",
-  "source": "src/index.ts",           
+  "type": "module",      
   "exports": {
-    "require": "./dist/index.cjs",      
-    "default": "./dist/index.modern.js" 
+    "require": "./dist/index.js",      
+    "default": "./dist/index.js" 
   },
-  "main": "./dist/index.cjs",          
-  "module": "./dist/index.module.js",   
-  "unpkg": "./dist/index.umd.js"
+  "main": "./dist/index.js",          
+  "module": "./dist/index.js"
 }

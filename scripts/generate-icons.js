@@ -2,8 +2,24 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 const svgDir = 'src/_icons/svg'
-const iconDir ='src/icons'
-const indexFile = 'src/index.ts'
+const iconDir = 'dist/icons'
+const indexFile = 'dist/index.js'
+
+
+const srcFilePath = 'src/icon.css'
+const distFilePath = 'dist/icon.css'
+
+// 同步读取源文件的内容
+const data = fs.readFileSync(srcFilePath, 'utf8');
+
+// 同步写入目标文件
+fs.writeFileSync(distFilePath, data, 'utf8');
+
+const folderPath = 'dist';
+if (!fs.existsSync(folderPath)) {
+  // 文件夹不存在，创建文件夹
+  fs.mkdirSync(folderPath);
+}
 
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
@@ -51,21 +67,18 @@ fs.readdir(svgDir, (err, files) => {
   files.forEach((file) => {
     if (path.extname(file) === '.svg') {
       const iconName = path.basename(file, '.svg')
-      const iconPath = path.join(iconDir, `${iconName}.tsx`)
+      const iconPath = path.join(iconDir, `${iconName}.js`)
 
       // 读取 SVG 文件内容
       const svgContent = fs.readFileSync(path.join(svgDir, file), 'utf-8')
 
       // 创建 Omi icon 元素
-      const iconComponent = `import { h, tag, WeElement, OmiProps, classNames } from 'omi'
-import { IconProps } from '../type'
-import { prefix } from '../prefix'
+      const iconComponent = `import { h, define, WeElement, classNames } from 'omi'
 import css from '../icon.css'
-
-@tag('t-icon-${iconName}')
+ 
 export class Icon${removeDashAndCapitalize(
         iconName
-      )} extends WeElement<IconProps> {
+      )} extends WeElement {
   static css = css
 
   static defaultProps = {
@@ -79,11 +92,11 @@ export class Icon${removeDashAndCapitalize(
     class: String,
   }
 
-  render(props: OmiProps<IconProps>) {
-    const iconClassName = classNames(prefix('icon'), props.class, {
-      [\`\${prefix('size-s')}\`]: props.size === 'small',
-      [\`\${prefix('size-m')}\`]: props.size === 'medium',
-      [\`\${prefix('size-l')}\`]: props.size === 'large',
+  render(props) {
+    const iconClassName = classNames('t-icon', props.class, {
+      ['t-size-s']: props.size === 'small',
+      ['t-size-m']: props.size === 'medium',
+      ['t-size-l']: props.size === 'large',
     })
     const flag = props.size === 'small' || props.size === 'medium' || props.size === 'large'
     const iconStyle = {
@@ -94,7 +107,12 @@ export class Icon${removeDashAndCapitalize(
 ${transformSvgContent(svgContent)}
     )
   }
-}`
+}
+
+define('t-icon-${iconName}', Icon${removeDashAndCapitalize(
+        iconName
+      )})
+`
       // 将 Omi icon 元素写入文件
       fs.writeFileSync(iconPath, iconComponent)
     }
