@@ -1,6 +1,6 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TDesign icons for Omi framework",
   "scripts": {
     "init": "git submodule init && git submodule update",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/omijs/tdesign-icons.git"
   },
-  "author": "",
+  "author": "dntzhang",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/omijs/tdesign-icons/issues"
@@ -26,12 +26,5 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.3"
-  },
-  "type": "module",      
-  "exports": {
-    "require": "./index.js",      
-    "default": "./index.js" 
-  },
-  "main": "./index.js",          
-  "module": "./index.js"
+  }
 }
