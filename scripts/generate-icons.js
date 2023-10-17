@@ -1,23 +1,22 @@
 const fs = require('fs')
 const path = require('path')
+const transform = require('./convert-svg-to-omi')
 
-const folderPath = 'dist';
+const folderPath = 'dist'
 if (!fs.existsSync(folderPath)) {
   // 文件夹不存在，创建文件夹
-  fs.mkdirSync(folderPath);
+  fs.mkdirSync(folderPath)
 }
 
 const svgDir = 'src/_icons/svg'
 const iconDir = 'dist'
 const indexFile = 'dist/index.js'
 
-const data = fs.readFileSync('src/icon.css', 'utf8');
-fs.writeFileSync('dist/icon.css', data, 'utf8');
+const data = fs.readFileSync('src/icon.css', 'utf8')
+fs.writeFileSync('dist/icon.css', data, 'utf8')
 
-const jsonData = fs.readFileSync('package.json', 'utf8');
-fs.writeFileSync('dist/package.json', jsonData, 'utf8');
-
-
+const jsonData = fs.readFileSync('package.json', 'utf8')
+fs.writeFileSync('dist/package.json', jsonData, 'utf8')
 
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
@@ -74,9 +73,7 @@ fs.readdir(svgDir, (err, files) => {
       const iconComponent = `import { h, define, WeElement, classNames } from 'omi'
 import css from './icon.css'
  
-export class Icon${removeDashAndCapitalize(
-        iconName
-      )} extends WeElement {
+export class Icon${removeDashAndCapitalize(iconName)} extends WeElement {
   static css = css
 
   static defaultProps = {
@@ -101,15 +98,11 @@ export class Icon${removeDashAndCapitalize(
       ...props.style,
       fontSize: props.size,
     }
-    return ( 
-${transformSvgContent(svgContent)}
-    )
+    return ${transform(transformSvgContent(svgContent))}
   }
 }
 
-define('t-icon-${iconName}', Icon${removeDashAndCapitalize(
-        iconName
-      )})
+define('t-icon-${iconName}', Icon${removeDashAndCapitalize(iconName)})
 `
       // 将 Omi icon 元素写入文件
       fs.writeFileSync(iconPath, iconComponent)
