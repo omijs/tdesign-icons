@@ -1,12 +1,11 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "TDesign icons for Omi framework",
   "scripts": {
     "init": "git submodule init && git submodule update",
     "gen": "node ./scripts/generate-icons.js",
-    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix",
-    "p": "cd dist & npm publish"
+    "lint": "eslint 'scripts/**/*.{js,ts,tsx,jsx}' --fix"
   },
   "repository": {
     "type": "git",
