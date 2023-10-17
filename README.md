@@ -15,17 +15,16 @@ npm install tdesign-icons-omi
 ## Usage 
 
 ```tsx
-import { render, signal, tag, Component, h } from 'omi'
-import { IconName } from 'tdesign-icons-omi';
+import { render, tag, Component, h } from 'omi'
+import from 'tdesign-icons-omi/xx-xx';
 
 @tag('icon-demo')
 class IconDemo extends Component {
-
   render() {
     return (
       <>
         <div>Hello TICon</div>
-        <t-icon-icon-name />
+        <t-icon-xx-xx />
       </>
     )
   }

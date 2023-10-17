@@ -1,25 +1,23 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const svgDir = 'src/_icons/svg'
-const iconDir = 'dist/icons'
-const indexFile = 'dist/index.js'
-
-
-const srcFilePath = 'src/icon.css'
-const distFilePath = 'dist/icon.css'
-
-// 同步读取源文件的内容
-const data = fs.readFileSync(srcFilePath, 'utf8');
-
-// 同步写入目标文件
-fs.writeFileSync(distFilePath, data, 'utf8');
-
 const folderPath = 'dist';
 if (!fs.existsSync(folderPath)) {
   // 文件夹不存在，创建文件夹
   fs.mkdirSync(folderPath);
 }
+
+const svgDir = 'src/_icons/svg'
+const iconDir = 'dist'
+const indexFile = 'dist/index.js'
+
+const data = fs.readFileSync('src/icon.css', 'utf8');
+fs.writeFileSync('dist/icon.css', data, 'utf8');
+
+const jsonData = fs.readFileSync('package.json', 'utf8');
+fs.writeFileSync('dist/package.json', jsonData, 'utf8');
+
+
 
 // 读取 SVG 目录
 fs.readdir(svgDir, (err, files) => {
@@ -42,7 +40,7 @@ fs.readdir(svgDir, (err, files) => {
       const variableName = `${iconName}Svg`
       exports += `export { Icon${removeDashAndCapitalize(
         iconName
-      )} } from './icons/${iconName}'\n`
+      )} } from './${iconName}'\n`
     }
   })
 
@@ -74,7 +72,7 @@ fs.readdir(svgDir, (err, files) => {
 
       // 创建 Omi icon 元素
       const iconComponent = `import { h, define, WeElement, classNames } from 'omi'
-import css from '../icon.css'
+import css from './icon.css'
  
 export class Icon${removeDashAndCapitalize(
         iconName
