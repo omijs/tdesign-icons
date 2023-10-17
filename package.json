@@ -1,7 +1,7 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.7",
-  "description": "TDesign icons for Omi framework",
+  "version": "0.0.8",
+  "description": "Cross framework icon collection based on tdesign design architecture and omi",
   "scripts": {
     "init": "git submodule init && git submodule update",
     "gen": "node ./scripts/generate-icons.js",

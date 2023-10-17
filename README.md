@@ -1,6 +1,6 @@
 # tdesign-icons-omi
 
-> TDesign icons for Omi framework
+> Cross framework icon collection based on tdesign design architecture and omi.
 
 ## Description
 
