@@ -1,7 +1,7 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "TDesign icons for Omi framework",
   "scripts": {
     "init": "git submodule init && git submodule update",
     "gen": "node ./scripts/generate-icons.js",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/omijs/tdesign-icons#readme",
   "dependencies": {
-    "omi": "^7.1.0"
+    "omi": "latest"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^6.8.0",
