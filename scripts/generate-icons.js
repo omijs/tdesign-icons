@@ -34,12 +34,6 @@ fs.readdir(svgDir, (err, files) => {
   files.forEach((file) => {
     if (path.extname(file) === '.svg') {
       const iconName = path.basename(file, '.svg')
-
-      // 读取 SVG 文件内容
-      const svgContent = fs.readFileSync(path.join(svgDir, file), 'utf-8')
-
-      // 创建一个变量来保存 SVG 内容
-      const variableName = `${iconName}Svg`
       exports += `export { Icon${removeDashAndCapitalize(
         iconName
       )} } from './${iconName}'\n`
@@ -48,7 +42,6 @@ fs.readdir(svgDir, (err, files) => {
 
   // 将所有 SVG 内容写入 index.ts 文件
   fs.writeFileSync(indexFile, exports)
-  console.log('Generated index.ts')
 })
 
 // 确保 icons 目录存在
@@ -62,6 +55,8 @@ fs.readdir(svgDir, (err, files) => {
     console.error('Error reading SVG directory:', err)
     return
   }
+
+  let html = ''
 
   // 遍历 SVG 文件
   files.forEach((file) => {
@@ -109,8 +104,25 @@ define('t-icon-${iconName}', Icon${removeDashAndCapitalize(iconName)})
 `
       // 将 Omi icon 元素写入文件
       fs.writeFileSync(iconPath, iconComponent)
+
+      html += `
+<li class="t-icons-view__wrapper">
+  ${svgContent}
+  <div class="t-icons-view__name">${iconName}</div>
+  <div class="t-icons-view__actions"><svg width="1em" height="1em"
+      style="font-size: 20px; color: var(--text-secondary);">
+      <use href="#t-icon-file-copy"></use>
+    </svg>
+    <div class="t-icons-view__actions-divider"></div><svg width="1em" height="1em"
+      style="font-size: 20px; color: var(--text-secondary);">
+      <use href="#t-icon-file-icon"></use>
+    </svg>
+  </div>
+</li>`
     }
   })
+
+  fs.writeFileSync('index.html', html)
 })
 
 function transformSvgContent(svgContent) {
