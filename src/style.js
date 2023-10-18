@@ -1,4 +1,6 @@
-export const iconStyle = `:host {
+import { css } from 'omi'
+
+export const iconStyle = css`:host {
   display: inline-block;
 }
 
