@@ -1,6 +1,6 @@
 {
   "name": "tdesign-icons-omi",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Cross framework icon collection based on tdesign design architecture and omi",
   "scripts": {
     "init": "git submodule init && git submodule update",

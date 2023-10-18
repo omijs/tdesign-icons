@@ -1,3 +1,8 @@
+
+export const iconStyle = `:host {
+  display: inline-block;
+}
+
 .t-icon {
   display: inline-block;
   vertical-align: middle;
@@ -37,4 +42,4 @@
 
 .t-icon.t-size-l {
   font-size: 18px;
-}
+}`

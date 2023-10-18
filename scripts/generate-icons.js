@@ -12,8 +12,8 @@ const svgDir = 'src/_icons/svg'
 const iconDir = 'dist'
 const indexFile = 'dist/index.js'
 
-const data = fs.readFileSync('src/icon.css', 'utf8')
-fs.writeFileSync('dist/icon.css', data, 'utf8')
+const data = fs.readFileSync('src/style.js', 'utf8')
+fs.writeFileSync('dist/style.js', data, 'utf8')
 
 const jsonData = fs.readFileSync('package.json', 'utf8')
 fs.writeFileSync('dist/package.json', jsonData, 'utf8')
@@ -69,7 +69,7 @@ fs.readdir(svgDir, (err, files) => {
 
       // 创建 Omi icon 元素
       const iconComponent = `import { h, define, WeElement, classNames } from 'omi'
-import css from './icon.css'
+import { iconStyle } from './style.js'
  
 export class Icon${removeDashAndCapitalize(iconName)} extends WeElement {
   static css = css
