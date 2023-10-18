@@ -1,4 +1,3 @@
-
 export const iconStyle = `:host {
   display: inline-block;
 }

@@ -72,7 +72,7 @@ fs.readdir(svgDir, (err, files) => {
 import { iconStyle } from './style.js'
  
 export class Icon${removeDashAndCapitalize(iconName)} extends WeElement {
-  static css = css
+  static css = iconStyle
 
   static defaultProps = {
     size: '1em',
