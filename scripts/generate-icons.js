@@ -126,6 +126,8 @@ define('t-icon-${iconName}', Icon${removeDashAndCapitalize(iconName)})
 })
 
 function transformSvgContent(svgContent) {
+  svgContent= svgContent.replace(/fill="black"/g, 'fill="currentColor"')
+
   return svgContent.replace(
     /<svg width="\d{2}" height="\d{2}"/,
     `<svg 
